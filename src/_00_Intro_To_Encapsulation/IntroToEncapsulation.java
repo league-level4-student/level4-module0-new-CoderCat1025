@@ -11,9 +11,10 @@ public class IntroToEncapsulation {
 		 */
 
 		// 1. Create a Vehicle object.
-
+Vehicle car = new Vehicle();
 		// 2. Use the vehicle's setters to change fuelTankCapacity and mpg.
-
+car.setFuelTankCapacity(10);
+car.setMpg(10);
 		// 3. Call setFuelInTank with an amount greater than the capacity.
 
 		// Note: The reason setFuelInTank doesn't show up is because it's private.
