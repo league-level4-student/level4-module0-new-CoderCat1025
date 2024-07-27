@@ -1,5 +1,7 @@
 package _01_Encapsulate_the_Data;
 
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+
 public class EncapsulateTheData {
 
 	// 1. Encapsulate all the members.
@@ -12,8 +14,20 @@ public class EncapsulateTheData {
 	 * All negative arguments should set itemsReceived to 0.
 	 */
 
-	int itemsReceived;
+	private int itemsReceived;
 
+	public void setItemsReceived(int i) {
+		if (i > 0) {
+			itemsReceived = i;
+		} else {
+			itemsReceived = 0;
+		}
+	}
+	
+	public int getItemsReceived() {
+		return itemsReceived;
+	}
+	
 	/*
 	 * degreesTurned must be locked between 0.0 and 360.0 inclusive.
 	 * 
@@ -21,7 +35,23 @@ public class EncapsulateTheData {
 	 * bound.
 	 */
 
-	double degreesTurned;
+	private double degreesTurned;
+	
+	public void setDegreesTurned(Double e) {
+		if (e >= 0.0 && e <= 360.0) {
+			degreesTurned = e;
+		} else {
+			if (e > 360) {
+				degreesTurned = 360.0;
+			} else {
+				degreesTurned = 0.0;
+			}
+		}
+	}
+	
+	public Double getDegreesTurned() {
+		return degreesTurned;
+	}
 
 	/*
 	 * nomenclature must not contain an empty String.
@@ -30,8 +60,20 @@ public class EncapsulateTheData {
 	 * space.
 	 */
 
-	String nomenclature;
+	private String nomenclature;
 
+	public void setNomenclature(String s) {
+		if (s.isEmpty()) {
+			nomenclature = " ";
+		} else {
+			nomenclature = s;
+		}
+	}
+	
+	public String getNomenclature() {
+		return nomenclature;
+	}
+	
 	/*
 	 * memberObj must not be a String.
 	 * 
@@ -48,6 +90,17 @@ public class EncapsulateTheData {
 	 * System.out.println(rob instanceof Random); //prints false
 	 */
 
-	Object memberObj;
+	private Object memberObj;
 
+	public void setMemberObj(Object i) {
+		if (i instanceof String) {
+			memberObj = new Object();
+		} else {
+			memberObj = i;
+		}
+	}
+	
+	public Object getMemberObj() {
+		return memberObj;
+	}
 }
