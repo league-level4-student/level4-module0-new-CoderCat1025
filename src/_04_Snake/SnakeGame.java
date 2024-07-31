@@ -116,7 +116,10 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * 
 		 * Hint: KeyEvent.VK_UP.
 		 */
-
+switch (e) {
+case KeyEvent.VK_UP:
+	
+}
 	}
 
 	private void randomizeFoodLocation() {
@@ -125,7 +128,10 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * Create a new Location object that is set to a random x and y values between 0
 		 * and the WIDTH and HEIGHT variables respectively.
 		 */
+Location loc = new Location();
 
+loc.setX(new Random().nextInt(WIDTH));
+loc.setY(new Random().nextInt(HEIGHT));
 
 		/*
 		 * Set the foodLocation equal to the Location object you just created.
@@ -134,40 +140,59 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * food on top of the snake.
 		 */
 
-	}
+if (snake.isLocationOnSnake(loc)) {
+	randomizeFoodLocation();
+}else {
+	foodLocation = loc;
+}
+}
+
+	
 
 	private void gameOver() {
 
 		// Stop the timer.
-
+timer.stop();
 		// Tell the user their snake is dead.
-
+JOptionPane.showMessageDialog(null, "Your snake died :(");
 		// Ask the user if they want to play again.
-
+String YorN = JOptionPane.showInputDialog(null, "Would you like to play again? Y/N");
 
 		/*
 		 * If the user wants to play again, call the snake's resetLocation method and
 		 * this class's randomizeFoodLocation method then restart the timer. Otherwise,
 		 * exit the game.
 		 */
-
+if (YorN.equals("Y")) {
+	snake.resetLocation();
+	randomizeFoodLocation();
+	timer.restart();
+} else {
+	window.dispose();
+}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		// Call the snake's update method.
-
+snake.update();
 		/*
 		 * If the snake's head is colliding with its own body or out of bounds call the
 		 * gameOver method.
 		 */
-
+if (snake.isHeadCollidingWithBody() || snake.isOutOfBounds()) {
+	gameOver();
+}
 
 		/*
 		 * If the location of the snake's head is equal to the location of the food,
 		 * feed the snake and randomize the food location.
 		 */
+if (foodLocation.sameLoc(snake.headX, snake.headY)){
+	snake.feed();
+randomizeFoodLocation();
+}
 
 		panel.repaint();
 	}

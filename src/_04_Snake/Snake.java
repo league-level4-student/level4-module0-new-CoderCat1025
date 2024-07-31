@@ -8,6 +8,9 @@ import java.util.Iterator;
 public class Snake {
 	public static final Color SNAKE_COLOR = Color.BLUE;
 	public static final int BODY_SIZE = 50;
+	
+	int headX;
+	int headY;
 
 	private SnakeSegment head;
 	private ArrayList<SnakeSegment> snake;
@@ -89,7 +92,7 @@ public class Snake {
 	public void resetLocation() {
 
 		// Clear the snake.
-
+snake.clear();
 		/*
 		 * Create a new Location object for the head at SnakeGame.WIDTH / 2,
 		 * SnakeGame.HEIGHT / 2.
