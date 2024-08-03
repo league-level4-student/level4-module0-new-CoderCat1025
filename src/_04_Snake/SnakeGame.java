@@ -61,8 +61,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 				g2.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
 				g2.setColor(FOOD_COLOR);
-				g2.drawOval(foodLocation.getX() * WINDOW_SCALE, foodLocation.getY() * WINDOW_SCALE, Snake.BODY_SIZE,
-						Snake.BODY_SIZE);
+				g2.drawOval(foodLocation.getX() * WINDOW_SCALE, foodLocation.getY() * WINDOW_SCALE, Snake.BODY_SIZE, Snake.BODY_SIZE);
 				snake.draw(g);
 			}
 		};
@@ -116,8 +115,21 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * 
 		 * Hint: KeyEvent.VK_UP.
 		 */
-switch (e) {
+		
+		System.out.println(e.getKeyCode());
+switch (e.getKeyCode()) {
 case KeyEvent.VK_UP:
+	snake.setDirection(Direction.UP);
+	break;
+case KeyEvent.VK_DOWN:
+	snake.setDirection(Direction.DOWN);
+	break;
+case KeyEvent.VK_RIGHT:
+	snake.setDirection(Direction.RIGHT);
+	break;
+case KeyEvent.VK_LEFT:
+	snake.setDirection(Direction.LEFT);
+	break;
 	
 }
 	}
@@ -128,10 +140,7 @@ case KeyEvent.VK_UP:
 		 * Create a new Location object that is set to a random x and y values between 0
 		 * and the WIDTH and HEIGHT variables respectively.
 		 */
-Location loc = new Location();
-
-loc.setX(new Random().nextInt(WIDTH));
-loc.setY(new Random().nextInt(HEIGHT));
+Location loc = new Location(new Random().nextInt(WIDTH), new Random().nextInt(HEIGHT));
 
 		/*
 		 * Set the foodLocation equal to the Location object you just created.
@@ -163,11 +172,13 @@ String YorN = JOptionPane.showInputDialog(null, "Would you like to play again? Y
 		 * this class's randomizeFoodLocation method then restart the timer. Otherwise,
 		 * exit the game.
 		 */
+YorN = YorN.toUpperCase();
+
 if (YorN.equals("Y")) {
 	snake.resetLocation();
 	randomizeFoodLocation();
 	timer.restart();
-} else {
+} else if (YorN.equals("N")){
 	window.dispose();
 }
 	}
