@@ -40,8 +40,8 @@ public class Snake {
 		 * Create variables for the next X and Y location of the snake's head.
 		 * Initialize them to the current X and Y locations.
 		 */
-int nextX = headX;
-int nextY = headY;
+ int nextX = snake.get(0).getLocation().getX();
+int nextY = snake.get(0).getLocation().getY();
 		/*
 		 * Use a switch statement to check on the currentDirection of the snake and
 		 * calculate the head's next x and y position. Depending on the direction, the
@@ -50,16 +50,16 @@ int nextY = headY;
 
 switch (currentDirection) {
 case UP:
-	nextY--;
+	nextY-=1;
 	break;
 case DOWN:
-	nextY++;
+	nextY+=1;
 	break;
 case RIGHT:
-	nextX++;
+	nextX+=1;
 	break;
 case LEFT:
-	nextX--;
+	nextX-=1;
 	break;
 }
 
@@ -114,16 +114,16 @@ canMove = true;
 		 */
 		
 		if (direction == Direction.UP && currentDirection == Direction.DOWN) {
-			return true;
+			return false;
 		} else if (direction == Direction.DOWN && currentDirection == Direction.UP) {
-			return true;
+			return false;
 		} else if (direction == Direction.RIGHT && currentDirection == Direction.LEFT) {
-			return true;
+			return false;
 		} else if (direction == Direction.LEFT && currentDirection == Direction.RIGHT) {
-			return true;
+			return false;
 		}
 
-		return false;
+		return true;
 	}
 
 	public void resetLocation() {
