@@ -89,7 +89,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 
 		// Note: Adjust delay here if you want snake to go slower or faster.
 
-		timer.setDelay(100);
+		timer.setDelay(150);
 
 		timer.start();
 	}
@@ -193,13 +193,14 @@ snake.update();
 		 * gameOver method.
 		 */
 if (snake.isHeadCollidingWithBody() || snake.isOutOfBounds()) {
-	//gameOver();
+	gameOver();
 }
 
 		/*
 		 * If the location of the snake's head is equal to the location of the food,
 		 * feed the snake and randomize the food location.
 		 */
+
 if (foodLocation.sameLoc(snake.headX, snake.headY)){
 	snake.feed();
 randomizeFoodLocation();

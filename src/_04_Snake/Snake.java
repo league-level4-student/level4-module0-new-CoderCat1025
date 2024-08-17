@@ -28,6 +28,7 @@ public class Snake {
 
 	public void feed() {
 		snake.add(new SnakeSegment(snake.get(0).getLocation(), BODY_SIZE));
+		System.out.println("fed");
 	}
 
 	public Location getHeadLocation() {
@@ -42,6 +43,9 @@ public class Snake {
 		 */
  int nextX = snake.get(0).getLocation().getX();
 int nextY = snake.get(0).getLocation().getY();
+
+headX = snake.get(0).getLocation().getX();
+headY = snake.get(0).getLocation().getY();
 		/*
 		 * Use a switch statement to check on the currentDirection of the snake and
 		 * calculate the head's next x and y position. Depending on the direction, the
@@ -71,7 +75,7 @@ case LEFT:
 		 * the snake (index 0) or you will go out of bounds.
 		 */
 
-for (int i = snake.size()-1; i>0; i++) {
+for (int i = snake.size()-1; i>0; i--) {
 	snake.get(i).setLocation(snake.get(i-1).getLocation());
 }
 
@@ -173,7 +177,10 @@ snake.add(head);
 		 * location as any other body segment.
 		 */
 		for (int i = 1; i < snake.size(); i++) {
-			if (head.getLocation() == snake.get(i).getLocation()) {
+//			System.out.println(head.getLocation().getX() + ", " + snake.get(i).getLocation().getX());
+//			System.out.println(head.getLocation().getY() + ", " + snake.get(i).getLocation().getY());
+			
+			if (head.getLocation().sameLoc(snake.get(i).getLocation().getX(), snake.get(i).getLocation().getY())) {
 				return true;
 			}
 		}

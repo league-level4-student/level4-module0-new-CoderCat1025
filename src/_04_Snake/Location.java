@@ -9,8 +9,8 @@ this.x = x;
 this.y = y;
 }
 
-public boolean sameLoc(int x, int y) {
-	if (this.x == x && this.y == y) {
+public boolean sameLoc(int a, int b) {
+	if (x == a && y == b) {
 		return true;
 	}
 	return false;
